@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class AppController {
 
-    static final Logger logger = LoggerFactory.getLogger(AppController.class);
+    static final Logger LOGGER = LoggerFactory.getLogger(AppController.class);
 
     private static final String TEMPLATE = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -20,7 +20,7 @@ public class AppController {
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "email") String email) {
 
-        logger.info("Received email: " + email);
+        LOGGER.info("Received email: " + email);
         return new Greeting(counter.incrementAndGet(), String.format(TEMPLATE, email));
 
     }
