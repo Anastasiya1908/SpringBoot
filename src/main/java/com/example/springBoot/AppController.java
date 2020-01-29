@@ -14,14 +14,14 @@ public class AppController {
 
     static final Logger logger = LoggerFactory.getLogger(AppController.class);
 
-    private static final String template = "Hello, %s, %s!";
+    private static final String TEMPLATE = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name") String name, @RequestParam(value="email") String email) {
+    public Greeting greeting(@RequestParam(value = "email") String email) {
 
         logger.info("Received email: " + email);
-        return new Greeting(counter.incrementAndGet(), String.format(template , name, email));
+        return new Greeting(counter.incrementAndGet(), String.format(TEMPLATE, email));
 
     }
 
