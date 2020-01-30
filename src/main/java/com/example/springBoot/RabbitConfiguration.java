@@ -41,11 +41,6 @@ public class RabbitConfiguration {
     }
 
     @Bean
-    public Queue myQueue2() {
-        return new Queue("query-1-2");
-    }
-
-    @Bean
     public DirectExchange directExchange() {
         return new DirectExchange("exchange-1");
     }
@@ -55,20 +50,6 @@ public class RabbitConfiguration {
         return BindingBuilder.bind(myQueue1()).to(directExchange()).with("error");
     }
 
-    @Bean
-    public Binding errorBinding2() {
-        return BindingBuilder.bind(myQueue2()).to(directExchange()).with("error");
-    }
-
-    @Bean
-    public Binding infoBinding() {
-        return BindingBuilder.bind(myQueue2()).to(directExchange()).with("info");
-    }
-
-    @Bean
-    public Binding warningBinding() {
-        return BindingBuilder.bind(myQueue2()).to(directExchange()).with("warning");
-    }
 
 }
 

@@ -28,36 +28,5 @@ public class AppController {
 
     }
 
-    @Autowired
-    RabbitTemplate rabbitTemplate;
 
-    @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Empty mapping";
-    }
-
-    @RequestMapping("/emit/error")
-    @ResponseBody
-    String error() {
-        LOGGER.info("Emit as error");
-        rabbitTemplate.convertAndSend("error", "Error");
-        return "Emit as error";
-    }
-
-    @RequestMapping("/emit/info")
-    @ResponseBody
-    String info() {
-        LOGGER.info("Emit as info");
-        rabbitTemplate.convertAndSend("info", "info");
-        return "Emit as info";
-    }
-
-    @RequestMapping("/emit/warning")
-    @ResponseBody
-    String warning() {
-        LOGGER.info("Emit as warning");
-        rabbitTemplate.convertAndSend("warning", "Warning");
-        return "Emit as warning";
-    }
 }
