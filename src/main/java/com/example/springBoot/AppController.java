@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AppController {
     @Autowired
-    EmailService emailService;
+    private EmailService emailService;
 
     static final Logger LOGGER = LoggerFactory.getLogger(AppController.class);
 
