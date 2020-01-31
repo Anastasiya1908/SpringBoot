@@ -38,6 +38,11 @@ public class RabbitConfiguration {
         return BindingBuilder.bind(myQueue1()).to(directExchange()).with("error");
     }
 
+    @Bean
+    public Binding directExchangeBinding() {
+        return BindingBuilder.bind(myQueue1()).to(directExchange()).with("direct-key-1");
+    }
+
 
 }
 
