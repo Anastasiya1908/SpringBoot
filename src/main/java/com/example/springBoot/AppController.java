@@ -25,8 +25,5 @@ public class AppController {
 
         LOGGER.info("Received email: " + email);
         return new Greeting(COUNTER.incrementAndGet(), String.format(TEMPLATE, email));
-
     }
-
-
 }
