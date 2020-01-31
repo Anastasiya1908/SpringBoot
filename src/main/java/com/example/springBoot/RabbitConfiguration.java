@@ -19,7 +19,7 @@ public class RabbitConfiguration {
 
 
     @Bean
-    public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory){
+    public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
         return new SimpleMessageListenerContainer(connectionFactory);
     }
 
@@ -37,12 +37,6 @@ public class RabbitConfiguration {
     public Binding errorBinding1() {
         return BindingBuilder.bind(myQueue1()).to(directExchange()).with("error");
     }
-
-    @Bean
-    public Binding directExchangeBinding() {
-        return BindingBuilder.bind(myQueue1()).to(directExchange()).with("direct-key-1");
-    }
-
 
 }
 

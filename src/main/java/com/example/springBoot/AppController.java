@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class AppController {
     @Autowired
-    private com.example.springBoot.services.EmailService emailService;
+    EmailService emailService;
 
     static final Logger LOGGER = LoggerFactory.getLogger(AppController.class);
 
