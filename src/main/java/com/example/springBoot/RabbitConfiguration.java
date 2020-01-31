@@ -4,10 +4,7 @@ package com.example.springBoot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitAdmin;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +16,7 @@ public class RabbitConfiguration {
 
 
     @Bean
-    public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory){
+    public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
         return new SimpleMessageListenerContainer(connectionFactory);
     }
 
@@ -37,7 +34,6 @@ public class RabbitConfiguration {
     public Binding errorBinding1() {
         return BindingBuilder.bind(myQueue1()).to(directExchange()).with("error");
     }
-
 
 }
 
