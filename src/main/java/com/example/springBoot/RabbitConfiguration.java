@@ -7,13 +7,19 @@ import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfiguration {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    @Value("${spring.rabbitmq.template.default-receive-queue}")
+    private String queueName;
 
+    @Value("${spring.rabbitmq.template.exchange}")
+    private String exchangeName;
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Bean
     public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
@@ -22,12 +28,12 @@ public class RabbitConfiguration {
 
     @Bean
     public Queue myQueue1() {
-        return new Queue("query-1-1");
+        return new Queue(queueName, true);
     }
 
     @Bean
     public DirectExchange directExchange() {
-        return new DirectExchange("exchange-1");
+        return new DirectExchange(exchangeName);
     }
 
     @Bean
