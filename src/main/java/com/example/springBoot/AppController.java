@@ -21,11 +21,4 @@ public class AppController {
         emailService.sendEmail(email);
         LOGGER.info("Received email: " + email);
     }
-
-    @GetMapping("/")
-    public String helloSleuth() {
-        LOGGER.info("Hello Sleuth");
-        return "success";
-    }
-
 }

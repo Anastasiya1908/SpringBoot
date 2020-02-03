@@ -13,28 +13,27 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfiguration {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    @Value("${spring.rabbitmq.template.default-receive-queue}")
+    private String queueName;
 
+    @Value("${spring.rabbitmq.template.exchange}")
+    private String exchangeName;
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Bean
     public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
         return new SimpleMessageListenerContainer(connectionFactory);
     }
 
-    @Value("${spring.rabbitmq.template.default-receive-queue}")
-    private String QueueName;
-
     @Bean
     public Queue myQueue1() {
-        return new Queue(QueueName, true);
+        return new Queue(queueName, true);
     }
-
-    @Value("${spring.rabbitmq.template.exchange}")
-    private String ExchangeName;
 
     @Bean
     public DirectExchange directExchange() {
-        return new DirectExchange(ExchangeName);
+        return new DirectExchange(exchangeName);
     }
 
     @Bean
