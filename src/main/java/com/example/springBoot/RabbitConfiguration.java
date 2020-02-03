@@ -7,6 +7,7 @@ import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,14 +21,20 @@ public class RabbitConfiguration {
         return new SimpleMessageListenerContainer(connectionFactory);
     }
 
+    @Value("${spring.rabbitmq.template.default-receive-queue}")
+    private String QueueName;
+
     @Bean
     public Queue myQueue1() {
-        return new Queue("query-1-1");
+        return new Queue(QueueName, true);
     }
+
+    @Value("${spring.rabbitmq.template.exchange}")
+    private String ExchangeName;
 
     @Bean
     public DirectExchange directExchange() {
-        return new DirectExchange("exchange-1");
+        return new DirectExchange(ExchangeName);
     }
 
     @Bean
